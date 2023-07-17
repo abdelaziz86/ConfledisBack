@@ -1,17 +1,17 @@
 const bodyparser = require("body-parser");
-const AController = require("../controller/produitController");
+const produitController = require("../controller/produitController");
 const express = require("express");
 const router = express.Router();
 
 
-router.post("/add", AController.add);
+router.post("/add", produitController.add);
 
-router.get("/all", AController.getAll); 
+router.get("/all", produitController.getAll); 
 
-router.delete("/delete/:id", AController.del);
+router.delete("/delete/:id", produitController.del);
 
-router.put("/update/:id", AController.update);
+router.put("/update/:id", produitController.update);
 
-router.get("/getById/:id", AController.getById);
+router.get("/getById/:id", produitController.getById);
 
 module.exports = router;
