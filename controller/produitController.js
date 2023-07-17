@@ -6,38 +6,33 @@ const { io } = require("../app");
 
 const getAll = (req, res, next) => {
   try {
-    Abonne.find({}).then((result) => {
+    Produit.find({}).then((result) => {
       console.log("test");
-    io.emit("msg", "all users are searched.");
+      io.emit("msg", "all products are searched.");
       res.send(result);
     });
   } catch (err) {
     console.log(err);
   }
 };
- 
-
-
 
 const add = async (req, res, next) => {
-  console.log("abonne : " + req.body);
+  console.log("produit: " + req.body);
   try {
-    const abonne = new Abonne(req.body);
-    await abonne.save();
-    io.emit("msg", "abonne added.");
-    res.send("abonne added successfully");
+    const produit = new Produit(req.body);
+    await produit.save();
+    io.emit("msg", "product added.");
+    res.send("Product added successfully");
   } catch (err) {
     res.send(err);
   }
 };
 
-
 const del = async (req, res, next) => {
   try {
-    //await User.findOneAndDelete({_id: req.params.id })
-    await Abonne.findByIdAndDelete(req.params.id);
-    io.emit("msg", req.params.id +"has been deleted");
-    res.send("abonne deleted");
+    await Produit.findByIdAndDelete(req.params.id);
+    io.emit("msg", req.params.id + " has been deleted");
+    res.send("Product deleted");
   } catch (err) {
     console.log(err);
   }
@@ -45,10 +40,8 @@ const del = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const user = new Abonne(req.body);
-    //User.findByIdAndUpdate(req.params.id, req.body, {new : true})
-    await Abonne.findOneAndUpdate({ _id: req.params.id }, req.body);
-    res.send("abonne modified done");
+    await Produit.findOneAndUpdate({ _id: req.params.id }, req.body);
+    res.send("Product modified done");
   } catch (err) {
     res.send(err);
   }
@@ -56,13 +49,14 @@ const update = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
-    await Abonne.findById(req.params.id).then((result) => {
+    await Produit.findById(req.params.id).then((result) => {
       res.send(result);
     });
   } catch (err) {
     console.log(err);
   }
 };
+
 
 
 module.exports = { add , getAll, del, update, getById }; 
