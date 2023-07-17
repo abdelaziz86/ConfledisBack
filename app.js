@@ -3,13 +3,12 @@ const http = require('http');
 const mongoconnection = require('./config/mongoconnection.json'); 
 const bodyParser = require("body-parser")
 var path = require("path"); 
-
-
-// =========   DATABASE ============
-
-
 const mongoose = require("mongoose");
 
+
+var app = express();
+
+// =========   DATABASE ============
 const MONGODB_URI =
   "mongodb+srv://abdelaziz:E5rYiu1yFAFF1jUU@cluster0.m5hcwfc.mongodb.net/?retryWrites=true&w=majority";
 const DB_NAME = "accreditation";
@@ -29,7 +28,7 @@ mongoose
   });
 
 
-var app = express();
+
 
 // ========== MIDDLEWARES ==========
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -40,9 +39,11 @@ app.use(bodyParser.json());
 
 
 // ======== ROUTES =================
-
 var produitRouter = require("./routes/produit");
-app.use("/produit", produitRouter);    
+app.use("/produit", produitRouter);   
+
+
+
 // ======== SERVER =================
 const server = http.createServer(app);
 server.listen(3000, () => console.log('server'))
