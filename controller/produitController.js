@@ -1,14 +1,12 @@
-const Abonne = require("../models/produit");
-const express = require("express");
-const { io } = require("../app");
+const Produit = require("../models/produit");
+const express = require("express"); 
 
 
 
 const getAll = (req, res, next) => {
   try {
     Produit.find({}).then((result) => {
-      console.log("test");
-      io.emit("msg", "all products are searched.");
+      console.log("test"); 
       res.send(result);
     });
   } catch (err) {
@@ -20,8 +18,7 @@ const add = async (req, res, next) => {
   console.log("produit: " + req.body);
   try {
     const produit = new Produit(req.body);
-    await produit.save();
-    io.emit("msg", "product added.");
+    await produit.save(); 
     res.send("Product added successfully");
   } catch (err) {
     res.send(err);
@@ -30,8 +27,7 @@ const add = async (req, res, next) => {
 
 const del = async (req, res, next) => {
   try {
-    await Produit.findByIdAndDelete(req.params.id);
-    io.emit("msg", req.params.id + " has been deleted");
+    await Produit.findByIdAndDelete(req.params.id); 
     res.send("Product deleted");
   } catch (err) {
     console.log(err);

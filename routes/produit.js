@@ -11,7 +11,7 @@ router.get("/all", produitController.getAll);
 router.delete("/delete/:id", produitController.del);
 
 router.put("/update/:id", produitController.update);
-
+    
 router.get("/getById/:id", produitController.getById);
 
 module.exports = router;
