@@ -4,14 +4,14 @@ const express = require("express");
 const router = express.Router();
 
 
-router.post("/add", produitController.add);
+router.post("/", produitController.add);
 
-router.get("/all", produitController.getAll); 
+router.get("/", produitController.getAll); 
 
-router.delete("/delete/:id", produitController.del);
+router.delete("/:id", produitController.del);
 
-router.put("/update/:id", produitController.update);
-    
-router.get("/getById/:id", produitController.getById);
+router.put("/:id", produitController.update);
+
+router.get("/:id", produitController.getById);
 
 module.exports = router;

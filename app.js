@@ -4,9 +4,10 @@ const mongoconnection = require('./config/mongoconnection.json');
 const bodyParser = require("body-parser")
 var path = require("path"); 
 const mongoose = require("mongoose");
-
+const cors = require("cors");
 
 var app = express();
+app.use(cors());
 
 // =========   DATABASE ============
 const MONGODB_URI =
